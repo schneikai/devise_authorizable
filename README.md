@@ -56,7 +56,7 @@ Someone who would like to add a browser based role manager is very welcome.
 
 # To check if the user has the specified role:
 @user.has_role? :admin
-=> true
+=> false
 
 # To add a role 'admin' to the user:
 @user.add_role :admin
