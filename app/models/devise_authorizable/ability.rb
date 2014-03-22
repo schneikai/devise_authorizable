@@ -10,16 +10,6 @@ module DeviseAuthorizable
 
       create_authorizable_getter
 
-      # If the user is a guest, apply the guest role abilities.
-      # If a user is authenticated (signed in) apply the avbilities for the
-      # guest role and authenticated role.
-      if @authorizable.guest?
-        self.try :guest
-      elsif @authorizable.authenticated?
-        self.try :guest
-        self.try :authenticated
-      end
-
       # Apply abilities for all other roles.
       apply_roles @authorizable.roles
     end
@@ -60,13 +50,19 @@ module DeviseAuthorizable
       # of lower roles.
       # https://github.com/ryanb/cancan/wiki/Ability-Precedence
       def apply_roles(roles)
-        (role_order | roles).each { |role| self.try(role) }
+        # If the user has the system role +authenticated+ include all
+        # abilities for guest users too.
+        self.try(:guest) if roles.include?(:authenticated)
+
+        defined_roles.each do |role|
+          self.try(role) if roles.include? role
+        end
       end
 
       # Returns the roles methods defined on the ability object.
       # TODO: Couldn't find out if the order is always the order they are defined
       # in the class. Because this is really important. See commen on *apply_roles*.
-      def role_order
+      def defined_roles
         self.class.instance_methods(false)
       end
   end
