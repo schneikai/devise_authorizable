@@ -1,6 +1,6 @@
 module DeviseAuthorizable
   module Controller
-    include ActiveSupport::Concern
+    extend ActiveSupport::Concern
     # Creates and returns the current user's ability and caches it. If you
     # want to override how the Ability is defined then this is the place.
     # Just define the method in the controller to change behavior.
