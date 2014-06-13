@@ -7,7 +7,7 @@ module DeviseAuthorizable
 
     # Always return the role name as symbol.
     def name
-      self[:name].to_sym
+      self[:name].nil? ? nil : self[:name].to_sym
     end
   end
 end
