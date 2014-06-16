@@ -9,6 +9,15 @@ module DeviseAuthorizable
         has_many :rolez, as: :authorizable, dependent: :destroy, class_name: "DeviseAuthorizable::Role"
       end
 
+      module ClassMethods
+        # Returns all users with the given role.
+        #   User.with_role(:admin)
+        #   => ActiveRecord::Relation
+        def with_role(role)
+          joins(:rolez).where('devise_authorizable_roles.name = ?', role).references(:rolez)
+        end
+      end
+
       # Returns +true+ if the user is a guest. Otherwise +false+.
       def guest?
         !self.persisted?
