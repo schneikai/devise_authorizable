@@ -63,6 +63,10 @@ Someone who would like to add a browser based role manager is very welcome.
 
 # To remove the 'admin' role from the user
 @user.delete_role :admin
+
+# To get all users with a given role
+User.with_role :admin
+
 ```
 
 ## Define abilities
