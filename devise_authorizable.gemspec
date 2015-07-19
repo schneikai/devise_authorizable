@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.0"
   s.add_dependency "devise", "~> 3.0"
-  s.add_dependency "cancan", ">= 1.6.10", "< 2"
+  s.add_dependency "cancancan", "~> 1.12"
 
   s.add_development_dependency "jquery-rails"
   s.add_development_dependency "sqlite3"
