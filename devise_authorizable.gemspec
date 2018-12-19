@@ -17,8 +17,10 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.0"
-  s.add_dependency "devise", "~> 3.0"
-  s.add_dependency "cancancan", "~> 1.12"
+  s.add_dependency "devise", "~> 3.5.10"
+  # https://github.com/CanCanCommunity/cancancan
+  # CanCan 2 is out but needs Rails >= 4.2 
+  s.add_dependency "cancancan", "~> 1.10"
 
   s.add_development_dependency "jquery-rails"
   s.add_development_dependency "sqlite3"

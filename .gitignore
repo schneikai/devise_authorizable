@@ -11,5 +11,7 @@
 
 .DS_Store
 .rvmrc
+.ruby-gemset
+.ruby-version
 Gemfile.lock
 /bin
